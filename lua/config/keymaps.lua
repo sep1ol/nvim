@@ -3,7 +3,14 @@
 -- Add any additional keymaps here
 
 -- Navigate vim panes
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
+local map = vim.keymap
+if os.getenv("TMUX") then
+  map.del("n", "<C-h>")
+  map.del("n", "<C-j>")
+  map.del("n", "<C-k>")
+  map.del("n", "<C-l>")
+  map.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
+  map.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>")
+  map.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>")
+  map.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
+end
