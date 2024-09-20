@@ -1,12 +1,9 @@
 return {
-  {
-    "folke/tokyonight.nvim",
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
+  "uloco/bluloco.nvim",
+  lazy = false,
+  priority = 1000,
+  dependencies = { "rktjmp/lush.nvim" },
+  config = function()
+    -- your optional config goes here, see below.
+  end,
 }

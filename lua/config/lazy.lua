@@ -12,7 +12,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
+
 vim.opt.rtp:prepend(lazypath)
+vim.opt.endofline = true
+vim.opt.fixendofline = true
 
 require("lazy").setup({
   spec = {
@@ -49,5 +52,21 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
+  },
+  {
+    "user/config",
+    name = "user-config",
+    priority = 1000, -- ensure it loads first
+    config = function()
+      -- Set clipboard option using Neovim API
+      vim.opt.clipboard = "unnamed"
+
+      -- Add any other Neovim options you want to set here
+      -- For example:
+      -- vim.api.nvim_set_option("number", true)
+      -- vim.api.nvim_set_option("expandtab", true)
+      -- vim.api.nvim_set_option("shiftwidth", 2)
+      -- vim.api.nvim_set_option("tabstop", 2)
+    end,
   },
 })
